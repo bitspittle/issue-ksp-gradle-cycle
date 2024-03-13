@@ -45,17 +45,13 @@ val generateCodeTask = tasks.register("generateCodeTask") {
     }
 }
 
+ksp.excludedSources.from(generateCodeTask)
+
 kotlin {
     sourceSets.main {
-        // To fix (1): Comment out this line
         kotlin.srcDir(generateCodeTask)
     }
 }
-
-// To fix (2): Uncomment out this block
-//tasks.named<KotlinJvmCompile>("compileKotlin") {
-//    source(generateCodeTask)
-//}
 
 application {
     mainClass.set("MainKt")
